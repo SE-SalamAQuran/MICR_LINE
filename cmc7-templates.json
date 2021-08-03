@@ -1,0 +1,54 @@
+{
+  "characters": {
+    "two": {
+      "ref": "2",
+      "img": "templates/2.png",
+      "threshold": 0.67
+    },
+    "zero": {
+      "ref": "0",
+      "img": "templates/0.png",
+      "threshold": 0.63
+    },
+    "one": {
+      "ref": "1",
+      "img": "templates/1.png",
+      "threshold": 0.8
+    },
+    "three": {
+      "ref": "3",
+      "img": "templates/3.png",
+      "threshold": 0.7
+    },
+    "four": {
+      "ref": "4",
+      "img": "templates/4.png",
+      "threshold": 0.6
+    },
+    "five": {
+      "ref": "5",
+      "img": "templates/5.png",
+      "threshold": 0.65
+    },
+    "six": {
+      "ref": "6",
+      "img": "templates/6.png",
+      "threshold": 0.75
+    },
+    "seven": {
+      "ref": "7",
+      "img": "templates/7.png",
+      "threshold": 0.75
+    },
+    "eight": {
+      "ref": "8",
+      "img": "templates/8.png",
+      "threshold": 0.72
+    },
+    "nine": {
+      "ref": "9",
+      "img": "templates/9.png",
+      "threshold": 0.75
+    }
+  }
+}
