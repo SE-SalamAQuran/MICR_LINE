@@ -22,17 +22,17 @@ def list_to_string(s):
 
 @app.post("/match_template")
 async def match_template(image: UploadFile = File(...), x_token=Header(...)):
-    with open("credentials/cred.json", 'r') as kf:
+    with open("../credentials/cred.json", 'r') as kf:
         credentials = json.load(kf)
     if credentials["API_KEY"] != x_token:
         raise HTTPException(401, detail="Unauthorized access to the API")
     else:
         pass
-    with open("inputs/input.png", "wb") as buffer:
+    with open("../inputs/input.png", "wb") as buffer:
         shutil.copyfileobj(image.file, buffer)
     micr_number = []
 
-    with open("cmc7-templates.json", 'r') as f:
+    with open("../cmc7-templates.json", 'r') as f:
         temps = json.load(f)
     images = ['three', 'zero', 'one', 'five', 'four', 'two', 'nine', 'eight', 'seven', 'six']
     coordinates = []
@@ -44,12 +44,12 @@ async def match_template(image: UploadFile = File(...), x_token=Header(...)):
     }
     for i in images:
         temp_path = temps['characters'][i]['img']
-        image = cv2.imread("inputs/input.png")
+        image = cv2.imread("../inputs/input.png")
         (h, w,) = image.shape[:2]
         delta = int(h - (h * 0.2))
         bottom = image[delta:h, 0:w]
         img_gray = cv2.cvtColor(bottom, cv2.COLOR_BGR2GRAY)
-        template = cv2.imread(temp_path, 0)
+        template = cv2.imread("../" + temp_path, 0)
         w, h = template.shape[::-1]
         res = cv2.matchTemplate(img_gray, template, cv2.TM_CCOEFF_NORMED)
         threshold = temps['characters'][i]['threshold']
@@ -93,3 +93,8 @@ async def match_template(image: UploadFile = File(...), x_token=Header(...)):
                 micr_number.append(d["LABEL"])
 
     return list_to_string(micr_number)
+
+
+@app.get("/")
+async def get_main():
+    return "Success"
